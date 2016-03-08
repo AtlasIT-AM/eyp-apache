@@ -23,11 +23,13 @@ class apache (
     $maxrequestsperchild=$apache::params::maxrequestsperchild_default,
     $customlog_type=$apache::params::customlog_type_default,
     $logformats=undef,
+    $add_defult_logformats=true,
     $server_name=$apache::params::server_name_default,
     $manage_service=true,
     $ssl_compression=$apache::params::ssl_compression_default,
     $ssl_protocol=$apache::params::ssl_protocol_default,
     $ssl_chiphersuite=$apache::params::ssl_chiphersuite_default,
+    $manage_docker_service=false,
   )inherits apache::params {
 
   if($version!=$apache::version::default)
@@ -63,6 +65,7 @@ class apache (
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
+      require => Package[$apache::params::packagename],
       content => template($apache::params::sysconfigtemplate),
     }
   }
@@ -144,7 +147,8 @@ class apache (
   }
 
   class { '::apache::service':
-    manage_service => $manage_service,
+    manage_service        => $manage_service,
+    manage_docker_service => $manage_docker_service,
   }
 
 }
