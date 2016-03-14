@@ -3,6 +3,7 @@
 # 01 - vhost definition as in vhost/vhost.erb
 # 02 - ssl configuration as in ssl/vhost_template.erb
 # 03 - directory
+# 04 - redirect
 # 05,06,07 - rewrite rules
 # 08 - serverstatus
 # 09,10,11 - aliasmatch
@@ -120,7 +121,10 @@ define apache::vhost   (
         group   => 'root',
         mode    => '0644',
         notify  => Class['apache::service'],
-        require => Exec["mkdir p ${documentroot} ${servername} ${port}"]
+        require => [
+                    Exec["mkdir p ${documentroot} ${servername} ${port}"],
+                    File["${apache::params::baseconf}/conf.d"]
+                    ],
       }
 
       concat::fragment{ "${apache::params::baseconf}/conf.d/00_default.conf ini vhost":
@@ -159,7 +163,10 @@ define apache::vhost   (
         group   => 'root',
         mode    => '0644',
         notify  => Class['apache::service'],
-        require => Exec["mkdir p ${documentroot} ${servername} ${port}"],
+        require => [
+                    Exec["mkdir p ${documentroot} ${servername} ${port}"],
+                    File["${apache::params::baseconf}/conf.d/sites"]
+                    ],
       }
 
       concat::fragment{ "${apache::params::baseconf}/conf.d/sites/${order}-${servername}-${port}.conf ini vhost":
