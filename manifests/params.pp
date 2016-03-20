@@ -13,6 +13,7 @@ class apache::params inherits apache::version {
   $maxrequestsperchild_default='4000'
   $customlog_type_default='combined'
   $server_name_default = $::fqdn
+  $deflate_default = true
 
   # Default directory options
   $options_default= [ 'FollowSymlinks' ]

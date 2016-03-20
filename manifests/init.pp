@@ -30,12 +30,15 @@ class apache (
     $ssl_protocol=$apache::params::ssl_protocol_default,
     $ssl_chiphersuite=$apache::params::ssl_chiphersuite_default,
     $manage_docker_service=false,
+    $deflate=$apache::params::deflate_default,
   )inherits apache::params {
 
   if($version!=$apache::version::default)
   {
     fail("unsupported version for this system - expected: ${version} supported: ${apache::version::default}")
   }
+
+  validate_bool($deflate)
 
   validate_string($server_name)
 
@@ -143,6 +146,19 @@ class apache (
                   ],
       notify  => Class['apache::service'],
       content => template("${module_name}/ssl/ssl.erb"),
+    }
+  }
+
+  if($deflate)
+  {
+    file { "${apache::params::baseconf}/conf.d/deflate.conf":
+      ensure  => 'present',
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      require => [ File["${apache::params::baseconf}/conf.d"] ],
+      notify  => Class['apache::service'],
+      content => template("${module_name}/module/deflate.erb"),
     }
   }
 
