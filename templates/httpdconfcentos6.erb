@@ -890,6 +890,10 @@ AddOutputFilter INCLUDES .shtml
 #ErrorDocument 402 http://www.example.com/subscription_info.html
 #
 
+<% if(@errordocument) -%>
+ErrorDocument 404 <%= @errordocument %>
+<% end -%>
+
 #
 # Putting this all together, we can internationalize error responses.
 #

@@ -441,6 +441,7 @@ apache variables:
   * **startservers**          = 8,
   * **minspareservers**       = 5,
   * **maxspareservers**       = 20,
+  * **errordocument**         = undef,
 
 
 #### apache::fcgi

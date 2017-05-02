@@ -45,6 +45,7 @@ class apache(
               $startservers              = '8',
               $minspareservers           = '5',
               $maxspareservers           = '20',
+              $errordocument             = undef,
             ) inherits apache::params {
 
   if($version!=$apache::version::default)
