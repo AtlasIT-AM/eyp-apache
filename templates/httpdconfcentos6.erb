@@ -819,6 +819,12 @@ AddDefaultCharset <%= @defaultcharset %>
 #
 #AddType application/x-tar .tgz
 
+<%- if defined?(@addtype) -%>
+  <%- @addtype.each do |mediatype, extension| -%>
+AddType "<%= mediatype %>" <%= extension %>
+  <%- end -%>
+<%- end -%>
+
 #
 # AddEncoding allows you to have certain browsers uncompress
 # information on the fly. Note: Not all browsers support this.

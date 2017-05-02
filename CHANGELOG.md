@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.4.27
+
+* added addtype variable to manually add types
+
 ## 0.4.26
 
 * added errordocument variable
