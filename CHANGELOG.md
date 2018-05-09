@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.6.1
+
+* added ssl certs to sorrypage
+* added Ubuntu 18.04 support
+
 ## 0.6.0
 
 * **INCOMPATIBLE CHANGES**:

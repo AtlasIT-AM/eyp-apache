@@ -168,22 +168,31 @@ class apache::params inherits apache::version {
 
           $ssl_protocol_default=[ '-ALL', '+TLSv1', '+TLSv1.1', '+TLSv1.2' ]
           $snisupported=true
+
+          $modphp_pkg=[ 'libapache2-mod-php' ]
+          $modsystemd=false
+
           case $::operatingsystemrelease
           {
             /^14.*$/:
             {
               $packagename=[ 'apache2', 'apache2-mpm-prefork', 'apache2-utils', 'lynx-cur' ]
-              $modsystemd=false
-              $modphp_pkg=[ 'libapache2-mod-php5' ]
+
               $modphp_so='libphp5.so'
               $modphp_modulename='php5_module'
             }
             /^16.*$/:
             {
               $packagename=[ 'apache2', 'apache2-utils', 'lynx-cur' ]
-              $modsystemd=false
-              $modphp_pkg=[ 'libapache2-mod-php' ]
+
               $modphp_so='libphp7.0.so'
+              $modphp_modulename='php7_module'
+            }
+            /^18.*$/:
+            {
+              $packagename=[ 'apache2', 'apache2-utils' ]
+
+              $modphp_so='libphp7.2.so'
               $modphp_modulename='php7_module'
             }
             default: { fail("Unsupported Ubuntu version! - ${::operatingsystemrelease}")  }

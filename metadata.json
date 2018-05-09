@@ -1,6 +1,6 @@
 {
   "name": "eyp-apache",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "author": "eyp",
   "summary": "apache setup and configuration",
   "license": "Apache-2.0",
@@ -36,7 +36,7 @@
     },
     {
       "operatingsystem": "Ubuntu",
-      "operatingsystemrelease": [ "14.04", "16.04" ]
+      "operatingsystemrelease": [ "14.04", "16.04", "18.04" ]
     }
   ],
   "requirements": [
