@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.6.17
+
+* added support for **mod_proxy_wstunnel**
+* added mod_proxy per vhost settings
+
 ## 0.6.16
 
 * bugfix: intermediate file is optional
