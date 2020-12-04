@@ -17,6 +17,7 @@ class apache(
               $ssl_protocol              = $apache::params::ssl_protocol_default,
               $ssl_chiphersuite          = $apache::params::ssl_chiphersuite_default,
               $ssl_use_stapling          = false,
+              $sslinsecurerenegotiation  = false,
               $trace                     = false,
               $version                   = $apache::version::default,
               $apache_username           = $apache::params::apache_username,
@@ -62,6 +63,8 @@ class apache(
               $default_follow_sym_links  = true,
               $confd_purge               = true,
               $confd_recurse             = true,
+              $disable_htaccess_files    = false,
+              $disable_all_extensions    = false,
             ) inherits apache::params {
 
   if($version!=$apache::version::default)

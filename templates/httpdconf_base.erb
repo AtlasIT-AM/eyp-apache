@@ -789,7 +789,6 @@ BrowserMatch "^gnome-vfs/1.0" redirect-carefully
 BrowserMatch "^XML Spy" redirect-carefully
 BrowserMatch "^Dreamweaver-WebDAV-SCM1" redirect-carefully
 
-
 <%- if scope.function_versioncmp([@version, '2.4']) < 0 -%>
 #
 # Use name-based virtual hosting.
@@ -804,3 +803,31 @@ NameVirtualHost *:<%= val %>
 <% end -%>
 <% end -%>
 <% end -%>
+
+<%- if scope.function_versioncmp([@version, '2.4']) >= 0 -%>
+<% if @disable_htaccess_files -%>
+<FilesMatch "^\.ht">
+    Require all denied
+</FilesMatch>
+<% end -%>
+<% if @disable_all_extensions -%>
+<FilesMatch "^.*$">
+    Require all denied
+</FilesMatch>
+<% end -%>
+<% else -%>
+
+<% if @disable_htaccess_files -%>
+<FilesMatch "^\.ht">
+    Order Allow, Deny
+    Deny from all
+</FilesMatch>
+<% end -%>
+<% if @disable_all_extensions -%>
+<FilesMatch "^.*$">
+    Order Allow, Deny
+    Deny from all
+</FilesMatch>
+<% end -%>
+<% end -%>
+
