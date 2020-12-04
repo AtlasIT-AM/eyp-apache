@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 0.6.18
+
+* changed SSL key file permissions from 644 to 400
+* **INCOMPATIBLE CHANGES**:
+  - disabled apache modules: 
+    - dav_module
+    - dav_fs_module
+
 ## 0.6.17
 
 * added support for **mod_proxy_wstunnel**
