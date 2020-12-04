@@ -220,6 +220,19 @@ define apache::vhost(
           require => Exec["mkdir p ${documentroot} ${servername} ${port}"],
         }
       }
+      if($certname!=undef)
+      {
+        concat::fragment{ "${apache::params::baseconf}/conf.d/00_default.conf sslcert":
+          target  => "${apache::params::baseconf}/conf.d/00_default.conf",
+          order   => '02',
+          content => template("${module_name}/ssl/vhost_template.erb"),
+          require => File[  [
+                              "${apache::params::baseconf}/ssl/${certname}_pk${certname_version}.pk",
+                              "${apache::params::baseconf}/ssl/${certname}_cert${certname_version}.cert"
+                            ]
+                        ],
+        }
+      }
     }
     else
     {
