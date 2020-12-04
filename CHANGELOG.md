@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.6.20
+
+* added exclude from proxypass for server-status handler
+
 ## 0.6.19
 
 * added support for SSL variable SSLInsecureRenegotiation
