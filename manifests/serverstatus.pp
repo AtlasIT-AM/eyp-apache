@@ -6,6 +6,7 @@ define apache::serverstatus (
                               $servername       = $name,
                               $allowedip        = hiera_array('eypapache::monitips', undef),
                               $defaultvh        = false,
+                              $proxypass_exclude  = undef,
                             ) {
 
   if($allowedip!=undef)
