@@ -15,7 +15,7 @@ define apache::vhost::disablehttp10(
     }
   }
 
-  concat::fragment{ "${apache::params::baseconf}/conf.d/sites/${vhost_order}-${servername}-${port}.conf.run rewrites":
+  concat::fragment{ "${apache::params::baseconf}/conf.d/sites/${vhost_order}-${servername}-${port}.conf.run disablehttp10":
     target  => "${apache::params::baseconf}/conf.d/sites/${vhost_order}-${servername}-${port}.conf.run",
     content => template("${module_name}/rewrites/disablehttp10.erb"),
     order   => '06a',

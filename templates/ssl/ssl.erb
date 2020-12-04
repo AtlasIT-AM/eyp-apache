@@ -39,3 +39,5 @@ SSLCompression <%= scope.function_bool2onoff([@ssl_compression]) %>
 # SNI - virtualhosting SSL
 SSLStrictSNIVHostCheck <%= scope.function_bool2onoff([@sni]) %>
 <% end -%>
+
+SSLInsecureRenegotiation <%= scope.function_bool2onoff([@sslinsecurerenegotiation]) %>

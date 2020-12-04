@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.6.19
+
+* added support for SSL variable SSLInsecureRenegotiation
+* added support to disable all htaccess files (for CIS compliance)
+* added support to disable all file extensions (for CIS compliance)
+
 ## 0.6.18
 
 * changed SSL key file permissions from 644 to 400
