@@ -34,7 +34,7 @@ define apache::cert (
       ensure  => 'present',
       owner   => 'root',
       group   => 'root',
-      mode    => '0644',
+      mode    => '0400',
       require => [ Package[$apache::params::packagename], File["${apache::params::baseconf}/ssl"] ],
       source  => $pk_source,
       notify  => Class['apache::service'],
