@@ -1,6 +1,9 @@
 
   <Location <%= @serverstatus_url %>>
     SetHandler server-status
+    <%- if defined?(@proxypass_exclude) -%>
+    ProxyPass !
+    <%- end -%>
   <%- if defined?(@allowedip) and @allowedip!="" -%>
     <%- if scope.function_versioncmp([scope.lookupvar('apache::version'), '2.4']) >= 0 -%>
       <%- if @allowedip.kind_of?(Array) -%>
